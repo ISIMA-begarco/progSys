@@ -2,14 +2,14 @@
 .PHONY: clean
 
 # definition des variables
-CXX = g++
-CXXFLAGS = -O2 -Wall -pedantic -ansi -Wextra -g
+CXX = gcc
+CXXFLAGS = -O2 -Wall -pedantic -ansi -Wextra -g -std=c99
 OBJ = main.o
 
-tp1 : $(OBJ)
+traitement : $(OBJ)
 	$(CXX) $^ -o ./$@ $(CXXFLAGS)
 
-main.o : main.cpp
+main.o : main.c
 	$(CXX) -c $< -o $@ $(CXXFLAGS)
 	
 #Chaine.o : Chaine.cpp Chaine.hpp

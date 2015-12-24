@@ -14,21 +14,24 @@ int main(int arg_count, char **args)
 				printf("merde ca marche pas\n");
 		}
 		red = fork();
-		if(!red) {			
+		if(!red) {
 			para_blur_image(&input, &output, strtoul(args[3], 0, 0), 0);
 			write_image_to_stream(&output, tmp[0]);
+			rewind(tmp[0]);
 			return 0;
 		} else {
-			green = fork();			
+			green = fork();
 			if(!green) {
 				para_blur_image(&input, &output, strtoul(args[3], 0, 0), 1);
 				write_image_to_stream(&output, tmp[1]);
+				rewind(tmp[1]);
 				return 0;
 			} else {
 				blue = fork();
 				if(!blue) {
 					para_blur_image(&input, &output, strtoul(args[3], 0, 0), 2);	
 					write_image_to_stream(&output, tmp[2]);
+					rewind(tmp[2]);
 					return 0;
 				} else {
 					waitpid(red, &status_red, 0);
