@@ -51,19 +51,22 @@ int main(int arg_count, char ** args) {
 					    waitpid(blue, &status_blue, 0);
 				    }
 			    }
-			    printf("Tour %d/%d\n", i, repetition);
+			    printf("Passe %d/%d\n", i+1, repetition);
 		    }
 		    struct image unicol[3];
 		    for(inc = 0 ; inc < 3 ; inc++) {
 			    unicol[inc] = make_image_from_stream(tmp[inc]);
-			    //copy_image_layer(&(unicol[inc]), &output, inc);
+			    copy_image_layer(&(unicol[inc]), &output, inc);
+			    clear_image(&unicol[inc]);
 			    rewind(tmp[inc]);
 		    }
+		    //clear_image(&input);
 		    input = output;
 		}
 		write_image_to_file(&input, args[2]);
 		end = clock();
 		printf("Temps d'execution : %f\n", (double)(end-start)/CLOCKS_PER_SEC);
+		clear_image(&output);
 	} else {
 		fprintf(stderr, "Essaie plutot : %s input.ppm output.ppm 10", args[0]);
 	}
