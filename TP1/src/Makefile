@@ -3,7 +3,7 @@
 
 # definition des variables
 CXX = gcc
-CXXFLAGS = -O2 -Wall -pedantic -ansi -Wextra -g -std=c99
+CXXFLAGS = -O2 -Wall -pedantic -ansi -Wextra -g -pg -std=c99
 
 all : original parallele ameliore clean
 

@@ -16,7 +16,7 @@ int main(int arg_count, char **args)
 		for(inc = 0 ; inc < 3 ; inc++) {
 			tmp[inc] = tmpfile();
 			if(tmp[inc] == NULL)
-				printf("Impossible de creer un fichier temporaire.\n");
+				printf("Impossible de creer un fichier temporaire %d.\n", inc+1);
 		}
 		red = fork();
 		if(!red) {
@@ -42,7 +42,6 @@ int main(int arg_count, char **args)
 					waitpid(red, &status_red, 0);
 					waitpid(green, &status_green, 0);
 					waitpid(blue, &status_blue, 0);
-					sleep(5);
 				}
 			}
 		}
@@ -55,6 +54,6 @@ int main(int arg_count, char **args)
 	}
 	else
 	{
-		fprintf(stderr, "Essaie plutôt : %s input.ppm output.ppm 10", args[0]);
+		fprintf(stderr, "Essaie plutot : %s input.ppm output.ppm 10", args[0]);
 	}
 }

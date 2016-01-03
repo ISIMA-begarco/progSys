@@ -164,6 +164,11 @@ Il me faut des macros ou je vais devenir fou.
 
 void blur_image(struct image const *input, struct image *output, unsigned radius) {FOR_EACH_OUTPUT_ROW(FOR_EACH_OUTPUT_COLUMN(FOR_EACH_LAYER(DO_BLUR)))}
 
+/**
+ **
+ ** Fonction de floutage monochromatique
+ **
+ **/
 void para_blur_image(struct image const *input, struct image *output, unsigned radius, unsigned layer) {
 	FOR_EACH_OUTPUT_ROW(
 		FOR_EACH_OUTPUT_COLUMN(
