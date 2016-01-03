@@ -11,7 +11,7 @@ int main(int arg_count, char ** args) {
 		int inc, red=0, green=0, blue=0, status_red=0, status_green=0, status_blue=0, repetition=1;
 		clock_t start = clock(), end = 0;
 		
-		if(arg_count == 5) {
+		if(arg_count == 4) {
 		    repetition = strtoul(args[3], 0, 0);
 		}
 		FILE * tmp[3];
