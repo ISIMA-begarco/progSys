@@ -9,7 +9,7 @@ CXXFLAGS2 = -O2 -Wall -pedantic -ansi -Wextra -pg -std=c99
 all : original parallele ameliore clean
 
 ameliore : ameliore.c
-	$(CXX) $^ -o ./$@ $(CXXFLAGS2)
+	$(CXX) $^ -o ./$@ $(CXXFLAGS)
 
 parallele : parallele.c
 	$(CXX) $^ -o ./$@ $(CXXFLAGS)

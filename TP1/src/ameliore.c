@@ -7,12 +7,12 @@
 #include "image.h"
 
 int main(int arg_count, char ** args) {
-	if(arg_count >= 4) {
+	if(arg_count >= 3) {
 		int inc, red=0, green=0, blue=0, status_red=0, status_green=0, status_blue=0, repetition=1;
 		clock_t start = clock(), end = 0;
 		
 		if(arg_count == 5) {
-		    repetition = strtoul(args[4], 0, 0);
+		    repetition = strtoul(args[3], 0, 0);
 		}
 		FILE * tmp[3];
 		struct image input = make_image_from_file(args[1]);
@@ -27,21 +27,21 @@ int main(int arg_count, char ** args) {
 		    
 		    red = fork();
 		    if(!red) {
-			    para_blur_image(&input, &output, strtoul(args[3], 0, 0), 0);
+			    para_blur_image(&input, &output, strtoul(args[2], 0, 0), 0);
 			    write_image_to_stream(&output, tmp[0]);
 			    rewind(tmp[0]);
 			    return 0;
 		    } else {
 			    green = fork();
 			    if(!green) {
-				    para_blur_image(&input, &output, strtoul(args[3], 0, 0), 1);
+				    para_blur_image(&input, &output, strtoul(args[2], 0, 0), 1);
 				    write_image_to_stream(&output, tmp[1]);
 				    rewind(tmp[1]);
 				    return 0;
 			    } else {
 				    blue = fork();
 				    if(!blue) {
-					    para_blur_image(&input, &output, strtoul(args[3], 0, 0), 2);	
+					    para_blur_image(&input, &output, strtoul(args[2], 0, 0), 2);
 					    write_image_to_stream(&output, tmp[2]);
 					    rewind(tmp[2]);
 					    return 0;
@@ -63,19 +63,22 @@ int main(int arg_count, char ** args) {
 		    //clear_image(&input);
 		    input = output;
 		}
+		end = clock();
+		printf("Temps d'execution : %f\n", (double)(end-start)/CLOCKS_PER_SEC);
+		
 		FILE * final = tmpfile();
 		if(final == NULL)
 			printf("Impossible de creer un fichier temporaire %d.\n", inc+1);
 		else {
 		    write_image_to_stream(&input, final);
 		    rewind(final);
-		    //dup2(0, final);
-		    execl("/usr/bin/display", "out.ppm", NULL);
+		    dup2(final, STDIN_FILENO);
+		    close(STDIN_FILENO);
+		    if(execlp("display", "display", NULL)==-1) {
+				perror("execlp");
+			}
 		}
-		end = clock();
-		printf("Temps d'execution : %f\n", (double)(end-start)/CLOCKS_PER_SEC);
-		clear_image(&output);
 	} else {
-		fprintf(stderr, "Essaie plutot : %s input.ppm output.ppm 10", args[0]);
+		fprintf(stderr, "Essaie plutot : %s input.ppm output.ppm 10\n", args[0]);
 	}
 }
