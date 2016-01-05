@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>     
 #include <time.h>       
 #include <sys/types.h>
@@ -8,7 +9,7 @@
 
 int main(int arg_count, char ** args) {
 	if(arg_count >= 3) {
-		int inc, red=0, green=0, blue=0, status_red=0, status_green=0, status_blue=0, repetition=1;
+		int inc, red=0, green=0, blue=0, procimage=0, status_red=0, status_green=0, status_blue=0, status_procimage=0, repetition=1;
 		clock_t start = clock(), end = 0;
 		
 		if(arg_count == 4) {
@@ -70,13 +71,23 @@ int main(int arg_count, char ** args) {
 		if(final == NULL)
 			printf("Impossible de creer un fichier temporaire %d.\n", inc+1);
 		else {
-		    write_image_to_stream(&input, final);
+			write_image_to_stream(&input, final);
 		    rewind(final);
-		    dup2(final, STDIN_FILENO);
-		    close(STDIN_FILENO);
-		    if(execlp("display", "display", NULL)==-1) {
-				perror("execlp");
-			}
+			
+			procimage = fork();
+		    if(!procimage) {
+				close(STDIN_FILENO);
+				if(dup2(fileno(final), STDIN_FILENO) != STDIN_FILENO) {;
+					perror("dup2");
+				}
+				fclose(final);
+				if(execlp("display", "display", NULL)==-1) {
+					perror("execlp");
+				}
+			    return 0;
+		    } else {
+			    //waitpid(procimage, &status_procimage, 0);
+		    }
 		}
 	} else {
 		fprintf(stderr, "Essaie plutot : %s input.ppm output.ppm 10\n", args[0]);
