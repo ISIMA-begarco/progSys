@@ -1,0 +1,50 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
+<h1>Performance multi-thread</h1>
+
+<h2>Dans le flou (2)</h2>
+
+<p>
+Dans ce TP nous allons retravailler le programme <a>blur.c</a> du TP précédent en essayant une autre approche.
+
+<h3>Traitement parallèle avec pthread</h3>
+
+<p>
+Dans le TP précédent on a accéléré le traitement en le partageant sur plusieurs processus.
+Cette fois-ci on va essayer d'être plus léger avec des threads.
+
+<p>
+Transformez le programme <a>blur.c</a> pour qu'il floute les couches rouge/vert/bleu en parallèle, avec un thread différent par couche.
+<p>
+En utilisant <code>clock()</code>, <code>top</code>, <code>time</code> et <code>gprof</code> et en recommençant le flou 100 fois, décrivez le comportement des processus ainsi créés.
+
+<h3>Optimisation</h3>
+
+<p>
+En fait, pourquoi s'arrêter à 3 threads ?
+On a des tas de processeurs, donc on aimerait traiter simultanément <var>N</var> morceaux d'image.
+
+<p>
+Créez un programme qui réalise ce traitement en traitant une bande horizontale de l'image dans chaque thread.
+
+<p>
+Créez un autre programme qui réalise ce même traitement par bandes verticales.
+
+<p>
+À l'aide des outils et fonctions habituels, déterminez le sens de découpe et le nombre de threads qui donnent la meilleure efficacité à ce programme.
+
+<h2>Horloge suisse</h2>
+
+<p>
+Dans cet exercice, vous allez coordonner plusieurs threads pour simuler le comportement d'une horloge.
+L'utilisation de <code>sleep()</code> est donc prohibée.
+Pour vos tests, une minute peut durer moins que 60 secondes.
+
+<p>
+Écrivez un programme avec deux threads : le premier surveille l'horloge du système avec <code>time()</code> ; le deuxième dort.
+Quand le premier a vu une seconde passer, il réveille le deuxième qui incrémente un compteur et se rendort.
+
+<p>
+Ajoutez deux autres threads pour compter les minutes et les heures.
+On aura donc quatre threads au total.
+Leur réveil se fera en cascade.
