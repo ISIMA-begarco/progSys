@@ -1,0 +1,53 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
+<h1>Signaux et tubes</h1>
+
+<h2>Histoire auvergnate</h2>
+
+<p>
+Un paysan a deux fils.
+L'un d'eux tue son père.
+L'autre, de rage, l'assassine et se suicide.
+Programmez cette histoire lamentable.
+
+<h2>Horloge suisse (2)</h2>
+
+<p>
+Dans cet exercice, vous allez coordonner plusieurs processus pour simuler le comportement d'une horloge.
+L'utilisation de <code>sleep()</code> et <code>wait()</code> est donc prohibée.
+Pour vos tests, une minute peut durer moins que 60 secondes.
+
+<p>
+Écrivez un programme qui lance deux processus : le premier surveille l'horloge du système avec <code>time()</code> ; le deuxième dort.
+Quand le premier a vu une seconde passer, il réveille le deuxième qui incrémente un compteur et se rendort.
+
+<p>
+Ajoutez deux autres processus pour compter les minutes et les heures.
+On aura donc quatre processus au total.
+Leur réveil se fera en cascade.
+
+<p>
+Écrivez un programme qui affiche l'heure tenue à jour par ces processus.
+
+<p>
+Il faudrait aussi pouvoir régler l'heure de notre horloge.
+
+<p>
+Écrivez un programme qui permet d'incrémenter manuellement les trois compteurs en envoyant des signaux.
+
+<p>
+Écrivez un programme qui réinitialise l'heure à zéro ou à une heure, minute et seconde données.
+
+<p>
+Écrivez un programme qui arrête l'horloge et fait le ménage.
+
+<h2>Dans le flou (3)</h2>
+
+<p>
+Modifiez le programme de floutage du TP 1 pour utiliser un tube plutôt que des fichiers temporaires.
+Les trois processus rouge, vert, bleu se partageront un seul tube.
+Pour chaque pixel traité, le processus rouge y écrira, par exemple, <kbd>R<var>X</var></kbd>, où <var>X</var> est la valeur du pixel (codée sur 1 octet), alors que le processus vert y écrira <kbd>G<var>X</var></kbd>.
+Le processus père tiendra à jour des pointeurs pour savoir comment réassembler les pixels transmis par le tube.
+
+<p>
+Modifiez le programme précédent pour qu'il affiche l'image floutée avec le programme <code>display</code> au lieu de l'enregistrer dans un fichier, encore une fois en utilisant un tube plutôt que des fichiers temporaires.
