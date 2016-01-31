@@ -5,13 +5,7 @@
 CXX = gcc
 CXXFLAGS = -O2 -Wall -Wextra -g -std=c99 -lpthread
 
-all : bleu blan horloge paysan clean
-
-bleu : bleu.c
-	$(CXX) $^ -o ./$@ $(CXXFLAGS)
-
-blan : blan.c
-	$(CXX) $^ -o ./$@ $(CXXFLAGS)
+all : horloge paysan clean
 
 paysan : paysan.c
 	$(CXX) $^ -o ./$@ $(CXXFLAGS)
