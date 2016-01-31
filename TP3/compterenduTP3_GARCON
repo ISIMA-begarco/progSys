@@ -27,5 +27,60 @@ Un simple ps montre la non persistance de tous les protagonistes.
 Horloge suisse
 --------------
 
+Dans cet exercice on utilise les signaux pour communiquer en plus des pipes.
+Voici un exemple d'utilisation : ./horloge
+
+Exemple de sortie :
+	Horloge Suisse
+	--------------
+
+	1 - Afficher l'heure
+	2 - Incrementer les secondes
+	3 - Incrementer les minutes
+	4 - Incrementer les heures
+	5 - Reset
+	0 - Quitter
+	1
+	Il est : 03:05:02
+
+	Horloge Suisse
+	--------------
+
+	1 - Afficher l'heure
+	2 - Incrementer les secondes
+	3 - Incrementer les minutes
+	4 - Incrementer les heures
+	5 - Reset
+	0 - Quitter
+	4
+	Heures incrementees.
+
+	Horloge Suisse
+	--------------
+
+	1 - Afficher l'heure
+	2 - Incrementer les secondes
+	3 - Incrementer les minutes
+	4 - Incrementer les heures
+	5 - Reset
+	0 - Quitter
+	1
+	Il est : 04:05:05
+
+	Horloge Suisse
+	--------------
+
+	1 - Afficher l'heure
+	2 - Incrementer les secondes
+	3 - Incrementer les minutes
+	4 - Incrementer les heures
+	5 - Reset
+	0 - Quitter
+	0
+	Complété
+
+
+
 Dans le flou
 ------------
+
