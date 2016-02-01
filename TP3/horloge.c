@@ -8,8 +8,8 @@
 
 #define	NBFILS	4
 #define	HMAX	24
-#define	MMAX	6
-#define	SMAX	6
+#define	MMAX	60
+#define	SMAX	60
 
 int heure = 0;
 int pere = 0;
@@ -103,9 +103,10 @@ int main() {
 					puts("0 - Quitter");
 					fflush(stdout);
 					scanf("%d", &choix);
-		
+
 					if(1==choix) {
 						printf("Il est : ");
+						fflush(stdout);
 						for(int j = 0 ; j < 3 ; ++j) {
 							kill(fils[j], SIGUSR1);
 							fflush(stdout);
@@ -182,6 +183,3 @@ void inc2(int s) {
 	heure = heure+1>=SMAX?0:heure+1;
 	signal(SIGALRM, inc2);
 }
-
-
-
