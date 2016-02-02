@@ -141,8 +141,8 @@ Il me faut des macros ou je vais devenir fou.
 
 #define FOR_ONE_LAYER(...) for(unsigned layer = 0; layer < 1; ++layer) {__VA_ARGS__}
 
-#define FOR_EACH_OUTPUT_ROW(...) for(unsigned output_row = 0; output_row < output->row_count; ++output_row) {DEFINE_INPUT_RANGE(row) __VA_ARGS__}
-#define FOR_EACH_OUTPUT_COLUMN(...) for(unsigned output_column = 0; output_column < output->column_count; ++output_column) {DEFINE_INPUT_RANGE(column) __VA_ARGS__}
+#define FOR_EACH_OUTPUT_ROW(...) for(unsigned output_row = 0; output_row < input->row_count; ++output_row) {DEFINE_INPUT_RANGE(row) __VA_ARGS__}
+#define FOR_EACH_OUTPUT_COLUMN(...) for(unsigned output_column = 0; output_column < input->column_count; ++output_column) {DEFINE_INPUT_RANGE(column) __VA_ARGS__}
 
 #define DEFINE_INPUT_RANGE(X)\
 	unsigned input_##X##_begin = output_##X > radius ? output_##X - radius : 0;\
@@ -169,7 +169,10 @@ void blur_image(struct image const *input, struct image *output, unsigned radius
  ** Fonction de floutage monochromatique
  **
  **/
-void para_blur_image(struct image const *input, struct image *output, unsigned radius, unsigned layer) {
+void para_blur_image(struct image const *input, int fd[2], unsigned radius, unsigned layer) {
+	close(fd[0]);	// fermeture lecture
+	char message[3] = "1\0\0";
+	message[0] = (char)layer;
 	FOR_EACH_OUTPUT_ROW(
 		FOR_EACH_OUTPUT_COLUMN(
 			unsigned sum = 0;
@@ -178,9 +181,12 @@ void para_blur_image(struct image const *input, struct image *output, unsigned r
 					sum += (unsigned) input->data.as_rgb8[input_row * input->column_count + input_column][layer];
 				}
 			}
-			output->data.as_rgb8[output_row * output->column_count + output_column][layer] = (unsigned char)(sum / input_row_count / input_column_count);
+			//output->data.as_rgb8[output_row * output->column_count + output_column][layer] = (unsigned char)(sum / input_row_count / input_column_count);
+			message[1] = (unsigned char)(sum / input_row_count / input_column_count);
+			write(fd[1], &message, sizeof(message));	//ecriture
 		)
 	)
+	close(fd[1]);
 }
 
 void blur_image_layer(struct image const *input, struct image *output, unsigned radius, unsigned layer) {FOR_EACH_OUTPUT_ROW(FOR_EACH_OUTPUT_COLUMN(DO_BLUR))}
