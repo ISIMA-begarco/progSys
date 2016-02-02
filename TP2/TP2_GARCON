@@ -1,0 +1,70 @@
+ZZ2 F2 Benoît Garçon
+
+1 - Traitement parallèle avec pthread
+
+Ce programme est présent dans parallele.c.
+
+Temps pour la version originale :
+time ./original bowie.ppm boom.ppm 10
+
+real	0m1.561s
+user	0m1.530s
+sys	0m0.011s
+
+
+Temps pour parallele :
+time ./parallele bowie.ppm boom.ppm 10 1
+Temps d'execution : 1.420000
+
+real	0m0.507s
+user	0m1.412s
+sys	0m0.014s
+
+Temps pour parallele pour 100 :
+time ./parallele bowie.ppm boom.ppm 10 100
+Temps d'execution : 138.810000
+
+real	0m46.368s
+user	2m18.809s
+sys		0m0.016s
+
+C'est trois fois plus rapide que l'original.
+Avec top on ne voit pas les threads, et gprof donne le bon compte.
+
+
+2 - Optimisation
+L'optimisation par bandes verticales est dans vertical.c et horizontal dans horizontale.c.
+
+time ./horizontal bowie.ppm boom.ppm 10 
+Temps d'execution : 2.020000
+
+real	0m0.102s
+user	0m1.917s
+sys	0m0.121s
+
+time ./vertical bowie.ppm boom.ppm 10
+Temps d'execution : 13.530000
+
+real	0m0.449s
+user	0m2.463s
+sys	0m11.076s
+
+time ./horizontal bowie.ppm boom.ppm 10 100
+Temps d'execution : 185.220000
+
+real	0m3.084s
+user	3m4.921s
+sys	0m0.314s
+
+time ./vertical bowie.ppm boom.ppm 10 100
+Temps d'execution : 191.630000
+
+real	0m3.321s
+user	3m5.602s
+sys	0m6.034s
+
+Le traitement horizontalest le meilleur car c'est sur le côté le plus long et qu'on a le plus de threads.
+
+3 - Horloge suisse
+
+

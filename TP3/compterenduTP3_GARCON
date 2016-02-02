@@ -1,0 +1,86 @@
+TP3	BENOIT GARCON
+
+Compilation
+-----------
+
+Pour compiler utiliser make à la racine.
+
+
+Histoire auvergnate
+-------------------
+
+Dans cet exercice on n'utilise aucune boucle comme demandé et on se sert des pipes pour communiquer.
+Voici un exemple d'utilisation : ./paysan
+
+Sortie :
+	Fils 16846: Je suis le fils 16846 (le salaud).
+	Fils 16847: Je suis le fils 16847 (le vengeur).
+	PERE: Fils 16846, j'ai tue ta mere !
+	Fils 16846: Enfoire ! Meurs !
+	Fils 16847: Enfoire ! Meurs !
+	Fils 16847: Adieu monde cruel !
+	Processus arrêté
+	
+Un simple ps montre la non persistance de tous les protagonistes.
+
+
+Horloge suisse
+--------------
+
+Dans cet exercice on utilise les signaux pour communiquer en plus des pipes.
+Voici un exemple d'utilisation : ./horloge
+
+Exemple de sortie :
+	Horloge Suisse
+	--------------
+
+	1 - Afficher l'heure
+	2 - Incrementer les secondes
+	3 - Incrementer les minutes
+	4 - Incrementer les heures
+	5 - Reset
+	0 - Quitter
+	1
+	Il est : 03:05:02
+
+	Horloge Suisse
+	--------------
+
+	1 - Afficher l'heure
+	2 - Incrementer les secondes
+	3 - Incrementer les minutes
+	4 - Incrementer les heures
+	5 - Reset
+	0 - Quitter
+	4
+	Heures incrementees.
+
+	Horloge Suisse
+	--------------
+
+	1 - Afficher l'heure
+	2 - Incrementer les secondes
+	3 - Incrementer les minutes
+	4 - Incrementer les heures
+	5 - Reset
+	0 - Quitter
+	1
+	Il est : 04:05:05
+
+	Horloge Suisse
+	--------------
+
+	1 - Afficher l'heure
+	2 - Incrementer les secondes
+	3 - Incrementer les minutes
+	4 - Incrementer les heures
+	5 - Reset
+	0 - Quitter
+	0
+	Complété
+
+
+
+Dans le flou
+------------
+
