@@ -3,9 +3,12 @@
 
 # definition des variables
 CXX = gcc
-CXXFLAGS = -O2 -Wall -Wextra -g -std=c99 -lpthread
+CXXFLAGS = -O2 -Wall -Wextra -g -std=c99
 
-all : horloge paysan clean
+all : flou horloge paysan clean
+
+flou : flou.c
+	$(CXX) $^ -o ./$@ $(CXXFLAGS)
 
 paysan : paysan.c
 	$(CXX) $^ -o ./$@ $(CXXFLAGS)
