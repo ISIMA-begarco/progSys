@@ -84,3 +84,10 @@ Exemple de sortie :
 Dans le flou
 ------------
 
+Ici les fichiers temporaires pour le traitement des images ont disparu et ont laissé place à un tube pour envoyer des messages au père lorsqu'un nouveau pixel a été calculé. Le premier octet de ce message contient le layer concerné (0, 1 ou 2) et le second la valeur du pixel sur ce layer (0 à 255).
+
+Pour l'utilisation il faut appeler le programme comme suit :
+./flou image rayon
+
+Exemple :
+./flou leia.ppm 10
