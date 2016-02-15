@@ -3,7 +3,7 @@
 
 # definition des variables
 CXX = gcc
-CXXFLAGS = -O2 -Wall -Wextra -g -std=c99
+CXXFLAGS = -O2 -Wall -Wextra -Wcpp -g -std=c99
 
 all : flou horloge test-ipc clean
 

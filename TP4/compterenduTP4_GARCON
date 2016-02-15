@@ -53,6 +53,12 @@ On a donc vu que l'exécution de test-ipc créait un ipc qui se libérait en fin
 Horloge suisse
 --------------
 
+Pour utiliser ce programme il suffit d'utiliser la commande ./horloge. 
+Comme pour le TP precedent les differents programmes sont implementes a l'aide de fork. 
+Les semaphores sont utilises mais un seul l'a été au lieu des trois suggeres.
+En fait, on utilise ici un tableau de semaphores.
+Les BIP du systeme ne faisant pas BIP, en plus du \a un affichage par BIP a lieu pour chaque \a.
+
 
 Dans le flou
 ------------
