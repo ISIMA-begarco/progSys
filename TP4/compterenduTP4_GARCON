@@ -1,0 +1,59 @@
+TP4	BENOIT GARCON
+
+Compilation
+-----------
+
+Pour compiler utiliser make à la racine.
+
+
+Gestion des IPC
+---------------
+
+Test de ./test-ipc :
+	25097: début
+	25097: message de 25098: 
+	25098: début
+	25097: message de 25098: pid=25098, time=1454935759
+	25097: message de 25098: pid=25098, time=1454935760
+	25097: message de 25098: pid=25098, time=1454935761
+	25097: message de 25098: pid=25098, time=1454935762
+	25097: message de 25098: pid=25098, time=1454935763
+	25097: message de 25098: pid=25098, time=1454935764
+	25097: message de 25098: pid=25098, time=1454935765
+	25097: message de 25098: pid=25098, time=1454935766
+	25097: message de 25098: pid=25098, time=1454935767
+	25097: fin
+
+On dirait que ça marche.
+
+Avant :
+0x00006484 542081102  begarcon   666        16384      0                       
+0x00005260 1681686642 begarcon   666        16384      0 
+
+Pendant :
+0x00006484 542081102  begarcon   666        16384      0                       
+0x00005260 1681686642 begarcon   666        16384      0                       
+0x0022c996 1184989360 begarcon   666        100        2     
+
+Après :
+0x00006484 542081102  begarcon   666        16384      0                       
+0x00005260 1681686642 begarcon   666        16384      0
+
+Après un petit Ctrl-C :
+0x00006484 542081102  begarcon   666        16384      0                       
+0x00005260 1681686642 begarcon   666        16384      0                       
+0x0022c996 1185743027 begarcon   666        100        0
+
+Après un 'ipcrm -m 1185743027' :
+0x00006484 542081102  begarcon   666        16384      0
+0x00005260 1681686642 begarcon   666        16384      0
+
+On a donc vu que l'exécution de test-ipc créait un ipc qui se libérait en fin de programme et donc si on interrompt le programme il faut qu'on désalloue cet ipc.
+
+Horloge suisse
+--------------
+
+
+Dans le flou
+------------
+
