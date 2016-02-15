@@ -169,10 +169,7 @@ void blur_image(struct image const *input, struct image *output, unsigned radius
  ** Fonction de floutage monochromatique
  **
  **/
-void para_blur_image(struct image const *input, int fd[2], unsigned radius, unsigned layer) {
-	close(fd[0]);	// fermeture lecture
-	char message[3] = "1\0\0";
-	message[0] = (char)layer;
+void para_blur_image(struct image const *input, struct image const *output, unsigned radius, unsigned layer) {
 	FOR_EACH_OUTPUT_ROW(
 		FOR_EACH_OUTPUT_COLUMN(
 			unsigned sum = 0;
@@ -181,12 +178,9 @@ void para_blur_image(struct image const *input, int fd[2], unsigned radius, unsi
 					sum += (unsigned) input->data.as_rgb8[input_row * input->column_count + input_column][layer];
 				}
 			}
-			//output->data.as_rgb8[output_row * output->column_count + output_column][layer] = (unsigned char)(sum / input_row_count / input_column_count);
-			message[1] = (unsigned char)(sum / input_row_count / input_column_count);
-			write(fd[1], &message, sizeof(message));	//ecriture
+			output->data.as_rgb8[output_row * output->column_count + output_column][layer] = (unsigned char)(sum / input_row_count / input_column_count);
 		)
 	)
-	close(fd[1]);
 }
 
 void blur_image_layer(struct image const *input, struct image *output, unsigned radius, unsigned layer) {FOR_EACH_OUTPUT_ROW(FOR_EACH_OUTPUT_COLUMN(DO_BLUR))}

@@ -63,3 +63,5 @@ Les BIP du systeme ne faisant pas BIP, en plus du \a un affichage par BIP a lieu
 Dans le flou
 ------------
 
+Pour utiliser ce programme il suffit d'utiliser la commande './flou image rayon' comme d'habitude.
+Ici on a utilise une memoire partagee pour stocker l'image de sortie et donc beneficier d'un acces depuis chaque fork.
