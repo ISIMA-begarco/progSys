@@ -1,0 +1,22 @@
+TP5	BENOIT GARCON
+
+Compilation
+-----------
+
+Pour compiler utiliser make à la racine.
+
+
+
+Dans le flou
+------------
+
+Pour utiliser ce programme il suffit d'utiliser la commande './flou input output rayon' comme d'habitude.
+Ici on a utilise une memoire partagee pour ecrire directement l'image de sortie et donc beneficier d'un acces depuis chaque fork.
+On peut ensuite afficher l'image grâce à eog.
+
+
+
+Bavardage
+---------
+
+J'ai développe l'ensemble du programme sans savoir exactement ce qu'il fallait faire. Pour lancer le serveur il suffit d'exécuter le programme serveur et pour lancer un client on utilise bavardage.
