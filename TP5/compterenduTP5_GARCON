@@ -24,7 +24,7 @@ Les clients envoient des commandes de type CONNECT, DISCONNECT ou MESSAGE au ser
 Le serveur maintient une liste des clients connectés et redistribue les messages à tous les clients.
 Les messages ont une en-tête de taille fixe avec leur type et leur taille, et un corps de taille variable. 
 
-J'ai développe l'ensemble du programme sans savoir exactement ce qu'il fallait faire. Pour lancer le serveur il suffit d'exécuter le programme "./serveur" et pour lancer un client on utilise "./bavardage client_name".
+J'ai développe l'ensemble du programme sans savoir exactement ce qu'il fallait faire. Pour lancer le serveur il suffit d'exécuter le programme "./serveur" et pour lancer un client on utilise "./bavardage client_name". Pour se deconnecter il suffit d'envoyer 'D' (deconnecter).
 
 Lorsque l'on abuse des messages on obtient une erreur : "Resource temporaily unvailable".
 On utilise donc ftok().
