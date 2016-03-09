@@ -28,5 +28,3 @@ J'ai développe l'ensemble du programme sans savoir exactement ce qu'il fallait 
 
 Lorsque l'on abuse des messages on obtient une erreur : "Resource temporaily unvailable".
 On utilise donc ftok().
-
-Lorsqu'on essaie de contacter le serveur sur etud depuis berzet on obtient : No such device or address. Cela montre bien la localite de l'action.

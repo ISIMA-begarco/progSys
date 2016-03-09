@@ -119,6 +119,8 @@ int main(int arg_count, char ** args) {
 					bzero(buffer, sizeof(buffer));
 					if((taille = read(ecoute, buffer, sizeof(buffer))) != -1) {
 						printf("%s", buffer);
+					} else {
+						perror("oups ");
 					}
 				}
 			}

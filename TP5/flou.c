@@ -38,7 +38,7 @@ int main(int arg_count, char ** args) {
 		ftruncate(fd, get_image_byte_count(&input));
 
 		for(int i = 0 ; i < repetition ; ++i) {	/// nombre de repetition
-			int length =sprintf(memory, "P%u %u %u %u\n", input.type, input.column_count, input.row_count, input.max_value);	/// ecriture du header
+			int length = sprintf(memory, "P%u %u %u %u\n", input.type, input.column_count, input.row_count, input.max_value);	/// ecriture du header
 			for(int j = 0 ; j < 3 ; ++j) {	/// traitement par canal
 				fils[j] = fork();
 				if(!fils[j]) {

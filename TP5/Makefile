@@ -5,12 +5,15 @@
 CXX = gcc
 CXXFLAGS = -O2 -Wall -Wextra -g -std=c99
 
-all : flou clean
+all : serveur bavardage flou clean
 
 flou : flou.c
 	$(CXX) $^ -o ./$@ $(CXXFLAGS)
 
 bavardage : bavardage.c
+	$(CXX) $^ -o ./$@ $(CXXFLAGS)
+
+serveur : serveur.c file.c
 	$(CXX) $^ -o ./$@ $(CXXFLAGS)
 
 clean :
